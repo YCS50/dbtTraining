@@ -2,8 +2,8 @@ import snowflake.snowpark.functions as F
 def model(dbt,session):
 
     dbt.config(materialized="table")
-    Store=dbt.ref("store_tbl_2023")
-    Store_Sales=dbt.ref("store_sales_tbl_2023")
+    Store=dbt.ref("store_2023")
+    Store_Sales=dbt.ref("store_sales_2023")
 
     final_df = (
     Store

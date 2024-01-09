@@ -1,8 +1,8 @@
 With store_final as (
-    Select * From {{ ref('store_tbl_2023') }}
+    Select * From {{ ref('store_2023') }}
 ),
 store_sales_final as (
-    Select * from {{ ref('store_sales_tbl_2023')}}
+    Select * from {{ ref('store_sales_2023')}}
 ),
 
 Final_sales_profit as (
