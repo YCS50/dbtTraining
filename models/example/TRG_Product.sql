@@ -1,15 +1,8 @@
-{{
-    config(
-        materialized='incremental',
-        unique_key='SRC_PRODUCT_ID',
-        incremental_strategy='delete+insert'
-    )
-}}
+With TRG_Product as (
 
-select * from PROD.SRC_PRODUCT
+select A.PRODUCT_ID, A.Product_Name, A.PRODUCT_CATEGORY, A.state, A.Region, A.Brand, B.quantity,  B.Amount
+from Prod.Dim_Product A inner join Prod.FACT_PRODUCT_SALES B
+on A.PRODUCT_ID=B.PRODUCT_ID
 
-{% if is_incremental() %}
-
-    where updated_at > (select max(updated_at) from {{ this }})
-    
-{% endif %}
+)
+Select * from TRG_Product
