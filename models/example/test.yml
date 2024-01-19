@@ -10,10 +10,21 @@ models:
           - unique
           - not_null
       - name: REGION
-        description: "Region"
+        description: "Contains the region information"
         tests:
            - not_null:
                config:
+                 where: "product_category in ('Smart Phones','Electronic')"
                  severity: error
-                 error_if: ">5"
-                 warn_if: ">3"
+                 error_if: ">2"
+                 warn_if: ">1"
+                 # error_if: ">2" and warn_if: ">1", limit: 1, the test will pass as the returned error is limited to 1 
+                 store_failures: true
+           - dbt_utils.not_accepted_values:
+               values: ['North', 'East']
+
+      - name: QUANTITY
+        description: "This will have product quantity"
+        tests:
+            - quantity_greater_than_10
+      
