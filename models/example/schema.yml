@@ -19,3 +19,12 @@ models:
             tests:
                 - unique
                 - not_null
+    - name: STG_EMP
+      description: "{{ doc('rev_history') }}"   #call the STG_EMP_DOC.md
+      columns:
+          - name: EMPLOYEE_ID
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+         
